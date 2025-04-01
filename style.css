@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+}
+
+.canvas-container {
+    width: 80vw;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    background-color: white;
+    border: 1px solid black;
+}

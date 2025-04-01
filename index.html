@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mister Canvas</title>
+</head>
+<body onload="onInit()">
+
+    <h1>Mister Canvas</h1>
+
+    <!-- selectors -->
+    <div>
+        <input type="color" value="#000000" onchange="onSetColor(event.target.value)">
+        <select id="size" onchange="onSetSize(event.target.value)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>
+        <select id="shape" onchange="onSetShape(event.target.value)">
+            <option value="square" selected>square</option>
+            <option value="circle">circle</option>
+        </select>
+        <button onclick="onClearCanvas()">Clear</button>
+    </div>
+
+    <!-- canvas -->
+    <div class="canvas-container"> 
+        <canvas width="400" height="400"  
+            onmousedown="onDown(event)"
+            ontouchstart="onDown(event)" 
+            onmouseup="onUp()" 
+            ontouchend="onUp()"
+            onmousemove="onDraw(event)"
+            ontouchmove="onDraw(event)"> 
+        </canvas> 
+    </div>
+
+    <!-- upload image to canvas -->
+    <label for="file-input" >Choose a File</label>
+    <input class="file-upload"
+        onchange="onImgInput(event)"
+        type="file"
+        accept=".jpg, .jpeg, .png, .webp"
+        id="file-input"
+        name="image"
+        />
+    <div class="file-name" id="file-name"></div>
+        
+    <!-- finished canvas actions -->
+     <div>
+        <!-- download -->
+        <a href="#" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download</a>
+        <!-- upload to cloud -->
+        <form
+            action=""
+            method="POST"
+            enctype="multipart/form-data"
+            onsubmit="onUploadImg(event)"
+            >
+            <input name="img" id="imgData" type="hidden" />
+            <button class="btn" type="submit">Upload to Cloud</button>
+        </form>
+        <div class="share-container"></div>
+    </div>
+    
+    <script src="/js/upload.service.js"></script>
+    <script src="/js/misterCanvas.service.js"></script>
+    <script src="/js/misterCanvas.controller.js"></script>
+</body>
+</html>
